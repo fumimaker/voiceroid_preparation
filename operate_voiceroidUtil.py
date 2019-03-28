@@ -22,7 +22,7 @@ word_list = []
 
 for i in range(count):
         path = "./output/voice_" + str(i) + ".txt"
-        with open(path,'r',encoding="utf-8") as f:
+        with open(path,'r') as f:
                 s = f.read()
                 print(s)
                 word_list.append(s)

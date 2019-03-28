@@ -1,6 +1,15 @@
 import pyautogui
 import os
 import re
+import sys
+import time
+
+util_x = 500
+util_y = 500
+
+pyautogui.click(util_x, util_y)
+pyautogui.typewrite("Hello World")
+pyautogui.hotkey('ctrl','s')
 
 files = os.listdir("./output")
 count = 0

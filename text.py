@@ -4,7 +4,7 @@ import re
 with open("./counter.txt", mode='r') as f:
     fileCounter = int(f.read())
 
-f = open('./input.txt')
+f = open('./input.txt',encoding="utf-8")
 data1 = f.read()  # ファイル終端まで全て読んだデータを返す
 f.close()
 
@@ -14,9 +14,9 @@ for line in lines1:
     tex_list = re.split('。|、|！|？', line)
     print(tex_list)
     for i in tex_list:
-        if i != "":
+        if (i != '' ) or (i != ' '):
             path_w = "./output/voice_" + str(fileCounter) + ".txt"
-            with open(path_w, mode='w') as f:
+            with open(path_w, mode='w',encoding="utf-8") as f:
                 f.write(str(i))
                 fileCounter = fileCounter + 1
                 

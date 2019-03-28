@@ -36,4 +36,4 @@ for j in range(count):
         pyautogui.hotkey('ctrl','v')
         pyautogui.hotkey('ctrl','s')
         print(word_list[j])
-        time.sleep(2)
+        time.sleep(3)

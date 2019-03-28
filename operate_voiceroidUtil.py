@@ -22,8 +22,11 @@ for i in range(count):
         path = "./output/voice_" + str(i) + ".txt"
         file_data = open(path, "r")
         for line in file_data:
+                pyautogui.click(util_x, util_y)
+                pyautogui.typewrite(line)
+                pyautogui.hotkey('ctrl','s')
                 print(line)
+                time.sleep(2)
  
-# 開いたファイルを閉じる
         file_data.close()
         

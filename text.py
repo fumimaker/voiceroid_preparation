@@ -45,21 +45,13 @@ def main():
     lines1 = trimingByMark(lines1, "？")
     lines1 = [x for x in lines1 if x]
 
-
-    """
-    l = []
-    for line in lines1:
-        l.append(re.findall(".*?、|.*$", line))
-
-    l = flatten_with_any_depth(l)
-    tmp = []
-    for j in l:
-        tmp.append(re.findall(".*?、|.*$", j))
-    l = flatten_with_any_depth(tmp)
-
+    for word in lines1:
+        if "、" in word: # iは文字列
+            if len(word) + len(lines1[lines1.index(word)+1]) < 30:
+                lines1[lines1.index(word)] = lines1[lines1.index(word)] + lines1[lines1.index(word)+1]
     
-    """
-    print([x for x in lines1 if x])
+    for word in lines1:
+        print(word)
 
 """
     if (i != '') or (i != ' '):

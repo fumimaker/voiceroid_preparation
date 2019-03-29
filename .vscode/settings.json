@@ -1,6 +1,2 @@
 {
     "python.pythonPath": "C:\\Users\\ivr\\AppData\\Local\\Programs\\Python\\Python36\\python.exe",
-    "git.ignoreLimitWarning": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
-}

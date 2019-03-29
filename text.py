@@ -1,25 +1,68 @@
 import re
-#!/usr/bin/python
+
+# !/usr/bin/python
 # coding: UTF-8
-with open("./counter.txt", mode='r') as f:
-    fileCounter = int(f.read())
 
-f = open('./input.txt',encoding="utf-8")
-data1 = f.read()  # ファイル終端まで全て読んだデータを返す
-f.close()
+def flatten_with_any_depth(nested_list):
+    """深さ優先探索の要領で入れ子のリストをフラットにする関数"""
+    # フラットなリストとフリンジを用意
+    flat_list = []
+    fringe = [nested_list]
 
-lines1 = data1.split('\n') # 改行で区切る(改行文字そのものは戻り値のデータには含まれない)
-for line in lines1:
-    print(line)
-    tex_list = re.split('。|、|！|？', line)
-    tex_list.strip()
-    print(tex_list)
-    for i in tex_list:
-        if (i != '') or (i != ' '):
-            path_w = "./output/voice_" + str(fileCounter) + ".txt"
-            with open(path_w, mode='w',encoding="utf-8") as f:
-                f.write(str(i))
-                fileCounter = fileCounter + 1
-                
-with open("./counter.txt", mode='w') as f:
-    f.write(str(fileCounter))
+    while len(fringe) > 0:
+        node = fringe.pop(0)
+        # ノードがリストであれば子要素をフリンジに追加
+        # リストでなければそのままフラットリストに追加
+        if isinstance(node, list):
+            fringe = node + fringe
+        else:
+            flat_list.append(node)
+
+    return flat_list
+
+
+def trimingByMark(list, character):
+    l = []
+    for now_text in list:
+        l.append(re.findall(".*?" + character + "|.*$", now_text))
+
+    return flatten_with_any_depth(l)
+
+
+def main():
+    f = open('./input.txt', encoding="utf-8")
+    data1 = f.read()  # ファイル終端まで全て読んだデータを返す
+    f.close()
+
+    lines1 = data1.split('\n') # 改行で区切る(改行文字そのものは戻り値のデータには含まれない)
+    lines1 = trimingByMark(lines1, "、")
+    lines1 = trimingByMark(lines1, "。")
+    lines1 = trimingByMark(lines1, "！")
+    lines1 = trimingByMark(lines1, "？")
+    lines1 = [x for x in lines1 if x]
+
+    for word in lines1:
+        if "、" in word: # iは文字列
+            if len(word) + len(lines1[lines1.index(word)+1]) < 30:
+                lines1[lines1.index(word)] = lines1[lines1.index(word)] + lines1[lines1.index(word)+1]
+    
+    for word in lines1:
+        print(word)
+    
+
+    with open("./counter.txt", mode='r') as f:
+        fileCounter = int(f.read())
+        print("ファイル数は: " + str(fileCounter))
+
+    for word in lines1:
+        path_w = "./output/voice_" + str(fileCounter) + ".txt"
+        with open(path_w, mode='w',encoding="utf-8") as f:
+            f.write(str(word))
+            fileCounter = fileCounter + 1
+    
+    with open("./counter.txt", mode='w') as f:
+        f.write(str(fileCounter))
+
+
+if __name__ == '__main__':
+    main()

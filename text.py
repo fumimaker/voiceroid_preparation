@@ -12,9 +12,10 @@ lines1 = data1.split('\n') # 改行で区切る(改行文字そのものは戻�
 for line in lines1:
     print(line)
     tex_list = re.split('。|、|！|？', line)
+    tex_list.strip()
     print(tex_list)
     for i in tex_list:
-        if (i != '' ) or (i != ' '):
+        if (i != '') or (i != ' '):
             path_w = "./output/voice_" + str(fileCounter) + ".txt"
             with open(path_w, mode='w',encoding="utf-8") as f:
                 f.write(str(i))

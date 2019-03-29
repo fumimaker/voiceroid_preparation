@@ -30,10 +30,6 @@ def trimingByMark(list, character):
 
 
 def main():
-    with open("./counter.txt", mode='r') as f:
-        fileCounter = int(f.read())
-        print("ファイル数は: " + str(fileCounter))
-
     f = open('./input.txt', encoding="utf-8")
     data1 = f.read()  # ファイル終端まで全て読んだデータを返す
     f.close()
@@ -52,16 +48,21 @@ def main():
     
     for word in lines1:
         print(word)
+    
 
-"""
-    if (i != '') or (i != ' '):
+    with open("./counter.txt", mode='r') as f:
+        fileCounter = int(f.read())
+        print("ファイル数は: " + str(fileCounter))
+
+    for word in lines1:
         path_w = "./output/voice_" + str(fileCounter) + ".txt"
         with open(path_w, mode='w',encoding="utf-8") as f:
-            f.write(str(i))
+            f.write(str(word))
             fileCounter = fileCounter + 1
     
-with open("./counter.txt", mode='w') as f:
-    f.write(str(fileCounter))
-"""
+    with open("./counter.txt", mode='w') as f:
+        f.write(str(fileCounter))
+
+
 if __name__ == '__main__':
     main()

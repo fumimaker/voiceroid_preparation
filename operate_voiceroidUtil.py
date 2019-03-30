@@ -29,9 +29,9 @@ for file in files:
 print("変換ファイル数: "+str(count))
 
 word_list = []
-
+origin = 0
 for i in range(count):
-        path = "./output/voice_" + str(i) + ".txt"
+        path = "./output/voice_" + str(i+origin) + ".txt"
         with open(path,'r') as f:
                 s = f.read()
                 print(s)
@@ -54,4 +54,4 @@ for j in range(count):
 
         pyautogui.hotkey('f6')
         print("保存待機中...")
-        time.sleep(1.5)
+        time.sleep(2.5)

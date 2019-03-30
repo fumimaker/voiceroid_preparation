@@ -34,6 +34,7 @@ for j in range(count):
         pyautogui.click(util_x, util_y)
         pyperclip.copy(word_list[j])
         pyautogui.hotkey('ctrl','v')
-        pyautogui.hotkey('ctrl','s')
+        #pyautogui.hotkey('ctrl','s')
+        img_x,img_y = pyautogui.locateCenterOnScreen('save.PNG')
         print(word_list[j])
         time.sleep(3)

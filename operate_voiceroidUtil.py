@@ -40,6 +40,7 @@ print()
 
 for j in range(count):
         print(j)
+        print(word_list[j])
         flg = True
         print("play検索")
         while flg:

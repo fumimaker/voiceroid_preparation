@@ -56,13 +56,12 @@ for j in range(count):
         pyautogui.hotkey('f6')
         print("保存待機中...")
         time.sleep(2.5)
-        if (j%100)==0 and j!=0:
+        if (j%10)==0 and j!=0:
+                print("waiting...")
+                time.sleep(5)
                 cmd = 'taskkill /im VoiceroidEditor.exe'
                 returncode = subprocess.call(cmd)
+                pyautogui.click(pyautogui.locateCenterOnScreen('yes.PNG'))
                 time.sleep(1)
-                pyautogui.typewrite("tab")
-                time.sleep(1)
-                pyautogui.typewrite("enter")
-                time.sleep(3)
                 subprocess.Popen("C:\Program Files (x86)\AHS\VOICEROID2\VoiceroidEditor.exe")
-                time.sleep(5)
+                time.sleep(6)
